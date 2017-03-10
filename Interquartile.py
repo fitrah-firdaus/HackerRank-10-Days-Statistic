@@ -4,9 +4,9 @@ from math import floor
 def calculateMedian( data ):
     median = 0
     if len(data) % 2 == 0:
-        median = int((data[int(len(data) / 2)] + data[(int(len(data) / 2) - 1)]) / 2)
+        median = float((data[int(len(data) / 2)] + data[(int(len(data) / 2) - 1)]) / 2)
     else:
-        median = int(data[floor(len(data) / 2)])
+        median = float(data[floor(len(data) / 2)])
     return median
 
 def calculateQ1( data ):
@@ -33,13 +33,18 @@ def calculateQ3( data ):
 
 row1 = input("")
 row2 = input("")
-
+row3 = input("")
 row2Split = row2.split(" ")
+row3Split = row3.split(" ")
 
-data = [int(i) for i in row2Split]
+data = []
+freq = [int(j) for j in row3Split]
+seq = 0
+for i in row2Split:
+    for k in range(freq[seq]):
+        data.append(int(i))
+    seq=seq+1
 data.sort()
 #print(data)
-print(calculateQ1(data))
-print(calculateMedian(data))
-print(calculateQ3(data))
+print(calculateQ3(data)-calculateQ1(data))
 
